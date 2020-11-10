@@ -2,14 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A website to play Mancala!" />
+    <title>Mancala MVC</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <!--
-      This index.html acts as a template. The div below is where React will render our app.
-      To view this page, run `npm start` in the `/MancalaFrontend` folder. Then visit localhost:3000.
-    -->
     <div id="root"></div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script type="module" src="/_dist_/index.js"></script>
+    <!--
+      This index.html acts as a template. The div with id "root" above is where React will render our app.
+      To view this page, run `npm start` in the `/MancalaFrontend` folder. Then visit localhost:3000.
+      Make sure to start your backend server by following the instructions in the readme.
+    -->
   </body>
 </html>

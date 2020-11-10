@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { StartGame } from "./mancala/StartGame";
-import { Play } from "./mancala/Play";
-import { GameState } from "./mancala/gameState";
+import { StartGame } from "./StartGame/StartGame";
+import { Play } from "./Play/Play";
+import type { GameState } from "./gameState";
 
 export function App() {
 

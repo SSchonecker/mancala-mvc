@@ -1,5 +1,6 @@
 import React from "react";
-import { GameState } from "./gameState";
+import type { GameState } from "../gameState";
+import "./Play.css";
 
 interface PlayProps {
     gameState: GameState;

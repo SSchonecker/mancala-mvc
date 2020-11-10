@@ -1,23 +1,10 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import "./StartGame.css";
 
 interface StartGameProps {
     message: string;
     onPlayersConfirmed(playerOne: string, playerTwo: string): void;
 }
-
-// a button element with the specified css style applied to it
-const StartButton = styled.button`
-    font-size: 2em;
-    background-color: lightblue;
-    border: 2px solid black;
-`
-
-// a p element with the specified css style applied to it
-const ErrorMessage = styled.p`
-    height: 1em;
-    color: red;
-`;
 
 /**
  * Allows the players to enter their name.
@@ -38,10 +25,10 @@ export function StartGame({ message, onPlayersConfirmed }: StartGameProps) {
                onChange={(e) => setPlayerTwo(e.target.value)}
         />
 
-        <ErrorMessage>{message}</ErrorMessage>
+        <p className="errorMessage">{message}</p>
 
-        <StartButton onClick={() => onPlayersConfirmed(playerOne, playerTwo)}>
+        <button className="startGameButton" onClick={() => onPlayersConfirmed(playerOne, playerTwo)}>
             Play Mancala!
-        </StartButton>
+        </button>
     </div>
 }

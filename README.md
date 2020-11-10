@@ -8,19 +8,20 @@ Front-end
 The front-end for this case has been partially set-up. It's a React app that can be found in the `MancalaFrontend` folder.
 In the `MancalaFrontend` folder run `npm install` to install all required dependencies.
 
-Running the front-end is as simple as running `npm start` from within the same folder. This starts a server on `localhost:3000`.
+Running the front-end is as simple as running `npm start` from within the same folder. This starts a server on `localhost:3000`. It also opens the page in your default browser.
+If this port is unavailable, you'll be prompted to use a different port instead. If you need to, you can change the port to use in the `devOptions` section of the `snowpack.config.js`.
 
-Calls to `api/` are forwarded from this server to the Mancala API server (running on `localhost:8080` if you follow the instructions below). If your Mancala API runs on a different port, change the following line in the `webpack.config.js` file:
+Calls to `api/` are forwarded from this server to the Mancala API server (running on `localhost:8080` if you follow the instructions below). If your Mancala API runs on a different port, change the following line in the `snowpack.config.js` file:
 
-    proxy: {
-        '/api/*': 'http://localhost:8080/mancala/', // <-- change 8080 to a different port if necessary
-    }
+```
+proxy: {
+    '/mancala': 'http://localhost:8080/mancala', // <-- change 8080 to a different port if necessary
+},
+```
 
-Webpack takes care of compiling the TypeScript code, bundling the output into a single file, etc. A basic configuration is provided, which should take care of most use cases.
+Snowpack takes care of compiling the TypeScript code and React/JSX code. It also allows you to import css files into your TypeScript code. A basic configuration is provided, which should take care of most use cases.
 
-Run the command `npm run lint` to see syntax mistakes and common errors.
-
-Tip: Styling of components is handled by Styled Components. Install the `vscode-styled-components` plugin for autocomplete/syntax highlighting.
+Snowpack uses Hot Module Replacement. If you change a file, you should see those changes immediatly (without having to reload the page!)
 
 Maven
 -----
