@@ -13,40 +13,32 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import nl.sogyo.mancala.api.models.*;
 import nl.sogyo.mancala.domain.Mancala;
 import nl.sogyo.mancala.domain.MancalaImpl;
 
-/**
- * @author rvvugt
- *
- */
 @Path("players")
 public class MancalaInitialize {
 
-	/**
-	 * @param request
-	 * @return
-	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response initialize(
 			@Context HttpServletRequest request, 
-			PlayerData players) {
+			PlayerInput players) {
 		
 		HttpSession session= request.getSession(true);
 		Mancala mancala = new MancalaImpl();
 		
-		String namePlayer1 = players.nameplayer1;
-		String namePlayer2 = players.nameplayer2;
+		String namePlayer1 = players.getNameplayer1();
+		String namePlayer2 = players.getNameplayer2();
 		
 		mancala.setPlayerName(namePlayer1, 1);
 		mancala.setPlayerName(namePlayer2, 2);
 		
 		session.setAttribute("mancala", mancala);		
-		
-		String output = new JSONResultProcessor().createJSONResponse(mancala);
-		
+
+		var output = new MancalaDto(mancala, namePlayer1, namePlayer2);
 		return Response.status(200).entity(output).build();
 	}
 	

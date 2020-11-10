@@ -10,7 +10,7 @@
 	<name>Mancala API</name>
 
 	<properties>
-		<jettyVersion>9.4.26.v20200117</jettyVersion>
+		<jettyVersion>9.4.33.v20201020</jettyVersion>
 		<jee.version>8.0.1</jee.version>
 		<jersey.version>2.30</jersey.version>
 		<jaxrs.version>2.1.1</jaxrs.version>
@@ -91,9 +91,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<release>13</release>
-					<source>13</source>
-					<target>13</target>
+					<release>11</release>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 			<plugin>
