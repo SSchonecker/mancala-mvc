@@ -1,0 +1,67 @@
+body {
+    font-family: 'Lato', sans-serif;
+    padding: 5%;
+    margin: 5%;
+	margin-top: 5%;
+
+    --sogyo-color: #007936;
+    --accent-color: #eee;
+    --light-text-color: #ffffcc;
+	--purple-color: #6600ff;
+    --orange-color: #ff9933;
+    --dark-orange-color: #cc6600;
+}
+
+/* Describes the styling of the one and only element with id="mainheader", note the # in front of mainheader */
+#mancalaboard {
+    background-color: var(--orange-color);
+    width: 650px;
+    height: 350px;
+    z-index: 7; /* Changes the overlap layer to top-most */
+    border-radius: 10%;
+}
+
+/* Describes the styling of all elements with class="pit", note the . in front of it */
+.pit {
+    border: 1px solid rgb(0, 121, 54);
+    background-color: var(--dark-orange-color);
+    text-align: center;
+    display: inline-block; /* the default for span */
+    width: 40px;
+    height: 40px;
+    padding: 20px;
+    margin: 10px;
+    float: left;
+    border-radius: 40%;
+    color: black;
+    z-index: 8; /* Changes the overlap layer to top-most */
+}
+
+.pitbutton {
+	background-color: var(--sogyo-color);
+	color: var(--light-text-color);
+	font-weight: bold;
+	border-radius: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 9; /* Changes the overlap layer to top-most */
+}
+
+.pitbutton:hover {
+	background-color: var(--purple-color);
+	cursor: pointer;
+}
+
+.pitbutton:disabled, button[disabled]{
+  cursor: not-allowed;
+  background-color: gray;
+  color: black;
+}
+
+/* Describes the styling of all <article> elements 
+article {
+    border: 1px solid var(--primary-color);
+    color: var(--light-text-color);
+    margin: 5px;
+}*/
