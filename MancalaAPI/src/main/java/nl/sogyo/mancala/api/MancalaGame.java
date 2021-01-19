@@ -20,6 +20,7 @@ public class MancalaGame {
 			@PathParam("pit") String pit, 
 			@Context HttpServletRequest request) {
 		
+		System.out.println("came here");
 		//TODO: Implement this method!
 		
 		return null;

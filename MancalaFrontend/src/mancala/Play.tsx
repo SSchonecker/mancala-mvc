@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { GameState } from "./gameState";
 
 interface PlayProps {
     gameState: GameState;
 }
 
+interface Pit {
+    index: number;
+    nrOfStones: number;
+}
+
 export function Play({ gameState }: PlayProps) {
-    let [ pitsOne , pitsTwo ] = [gameState.players[0].pits, gameState.players[1].pits];
+    let pitsOne = gameState.players[0].pits;
+    let pitsTwo = gameState.players[1].pits;
     let kalahaOne = pitsOne[pitsOne.length - 1];
     let kalahaTwo = pitsTwo[pitsTwo.length - 1];
     let pitsOnlyOne = pitsOne.slice(0,-1);
@@ -15,33 +21,55 @@ export function Play({ gameState }: PlayProps) {
         float:"right"
     };
     
+    function SelectPit({index} : Pit) {
+        console.log("Selected pit: "+ index);
+        console.log("But I'm no sure what to do with it... I am terribly sorry");
+    }
+    
     return <div>
         <p>{gameState.players[0].name} vs {gameState.players[1].name}</p>
-        <div id="mancalaboard">
-        
-        {pitsOnlyTwo.reverse().map(pit =>
-            <span className="pit" key={pit.index}>
-                {pit.nrOfStones}
-                <br></br>
-                <button className="pitbutton" onClick={() => console.log("Pit selected!")}>{pit.index}</button>
-            </span>
-        )}
-        <br/>
-        <span className="pit" key={kalahaTwo.index}>
-            {kalahaTwo.nrOfStones}
-        </span>
-        
-        <span className="pit" key={kalahaOne.index} style={floater}>
-            {kalahaOne.nrOfStones}
-        </span>
-        <br/>
-        {pitsOnlyOne.slice(0,-1).map(pit =>
-            <span className="pit" key={pit.index}>
-                {pit.nrOfStones}
-                <br></br>
-                <button className="pitbutton" onClick={() => console.log("Pit selected!")}>{pit.index}</button>
-            </span>
-        )}
-        </div>
+        <table id="mancalaboard">
+        <tbody>
+        <tr>
+            <th></th>
+            {pitsOnlyTwo.reverse().map(pit =>
+                <th key={pit.index}>
+                    <span className="pit">
+                        {pit.nrOfStones}
+                        <br></br>
+                        <button className="pitbutton" onClick={() => SelectPit(pit)}>{pit.index}</button>
+                    </span>
+                </th>
+            )}
+            <th></th>
+        </tr>
+        <tr>
+            <th key={kalahaTwo.index}>
+                <span className="pit">
+                    {kalahaTwo.nrOfStones}
+                </span>
+            </th>
+            <th colSpan={pitsOnlyTwo.length}> Player's turn text here! </th>
+            <th key={kalahaOne.index}>
+                <span className="pit">
+                    {kalahaOne.nrOfStones}
+                </span>
+            </th>
+        </tr>
+        <tr>
+            <th></th>
+                {pitsOnlyOne.map(pit =>
+                    <th key={pit.index}>
+                    <span className="pit">
+                        {pit.nrOfStones}
+                        <br></br>
+                        <button className="pitbutton" onClick={() => SelectPit(pit)}>{pit.index}</button>
+                    </span>
+                    </th>
+                )}
+            <th></th>
+        </tr>
+        </tbody>
+        </table>
     </div>
 }

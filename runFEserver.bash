@@ -1,0 +1,2 @@
+cd MancalaFrontend
+npm start

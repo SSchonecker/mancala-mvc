@@ -15,8 +15,8 @@ body {
 /* Describes the styling of the one and only element with id="mainheader", note the # in front of mainheader */
 #mancalaboard {
     background-color: var(--orange-color);
-    width: 650px;
-    height: 350px;
+    width: 100%;
+    height: 400px;
     z-index: 7; /* Changes the overlap layer to top-most */
     border-radius: 10%;
 }
