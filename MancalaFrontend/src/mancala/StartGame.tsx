@@ -26,16 +26,21 @@ export function StartGame({ message, onPlayersConfirmed }: StartGameProps) {
 
     const [ playerOne, setPlayerOne ] = useState("");
     const [ playerTwo, setPlayerTwo ] = useState("");
+    const handleKeypress = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {onPlayersConfirmed(playerOne, playerTwo);}
+    };
 
     return <div>
         <input value={playerOne}
                placeholder="Player 1 name"
                onChange={(e) => setPlayerOne(e.target.value)}
+               onKeyPress={handleKeypress}
         />
 
         <input value={playerTwo}
                placeholder="Player 2 name"
                onChange={(e) => setPlayerTwo(e.target.value)}
+               onKeyPress={handleKeypress}
         />
 
         <ErrorMessage>{message}</ErrorMessage>
