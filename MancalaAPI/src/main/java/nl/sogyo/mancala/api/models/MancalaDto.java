@@ -9,7 +9,6 @@ public class MancalaDto {
     GameStatusDto gameStatus;
     public GameStatusDto getGameStatus() { return gameStatus; }
 
-
     public MancalaDto(Mancala mancala, String namePlayer1, String namePlayer2) {
         players = new PlayerDto[2];
         players[0] = new PlayerDto(mancala, namePlayer1, true);

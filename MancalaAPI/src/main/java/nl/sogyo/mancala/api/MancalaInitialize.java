@@ -27,7 +27,7 @@ public class MancalaInitialize {
 			@Context HttpServletRequest request, 
 			PlayerInput players) {
 		
-		HttpSession session= request.getSession(true);
+		HttpSession session = request.getSession(true);
 		Mancala mancala = new MancalaImpl();
 		
 		String namePlayer1 = players.getNameplayer1();

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { GameState } from "./gameState";
+import styled from "styled-components";
 
 interface PlayProps {
     gameState: GameState;
@@ -10,6 +11,11 @@ interface Pit {
     nrOfStones: number;
 }
 
+const ErrorMessage = styled.p`
+    height: 1em;
+    color: red;
+`;
+
 export function Play({ gameState }: PlayProps) {
     let pitsOne = gameState.players[0].pits;
     let pitsTwo = gameState.players[1].pits;
@@ -17,17 +23,41 @@ export function Play({ gameState }: PlayProps) {
     let kalahaTwo = pitsTwo[pitsTwo.length - 1];
     let pitsOnlyOne = pitsOne.slice(0,-1);
     let pitsOnlyTwo = pitsTwo.slice(0,-1);
-    const floater: React.CSSProperties = {
-        float:"right"
-    };
+	let errorMessage = "";
+	let playersTurnMessage = gameState.players[0].name + ", your turn!";
+		if (gameState.players[1].hasTurn) {playersTurnMessage = gameState.players[1].name + ", your turn!";}
     
-    function SelectPit({index} : Pit) {
-        console.log("Selected pit: "+ index);
-        console.log("But I'm no sure what to do with it... I am terribly sorry");
+    async function SelectPit({index} : Pit) {		
+		try {
+            const urlPath = "mancala/api/play/"+ index;
+            console.log("I'll try sending the move to the server");
+            const response = await fetch(urlPath, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json'
+                },
+            });
+    
+            if (response.ok) {
+				if (response.status === 200) {
+					const newState = await response.json();
+					console.log(newState);
+					errorMessage =  "";
+				}
+				else {
+					errorMessage = "Invalid move! Try again";
+				}
+			}
+        } catch (error) {
+            console.log(error.toString());
+		}
+        // add message on invalid move
+        //return <Play gameState={gameState}  />
     }
     
     return <div>
         <p>{gameState.players[0].name} vs {gameState.players[1].name}</p>
+		<ErrorMessage>{errorMessage}</ErrorMessage>
         <table id="mancalaboard">
         <tbody>
         <tr>
@@ -49,7 +79,7 @@ export function Play({ gameState }: PlayProps) {
                     {kalahaTwo.nrOfStones}
                 </span>
             </th>
-            <th colSpan={pitsOnlyTwo.length}> Player's turn text here! </th>
+			<th colSpan={pitsOnlyTwo.length}> {playersTurnMessage} </th>
             <th key={kalahaOne.index}>
                 <span className="pit">
                     {kalahaOne.nrOfStones}
