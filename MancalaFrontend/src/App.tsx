@@ -7,6 +7,7 @@ export function App() {
 
     const [ gameState, setGameState ] = useState<GameState | undefined>(undefined);
     const [ errorMessage, setErrorMessage ] = useState("");
+	const [ playError, setPlayError ] = useState("");
 
     async function tryStartGame(playerOne: string, playerTwo: string) {
         if (!playerOne) {
@@ -46,6 +47,37 @@ export function App() {
                           message={errorMessage}
         />
     }
-
-    return <Play gameState={gameState} />
+	
+	////////////////////////////////////////
+	else {
+		return <Play 	gameState={gameState} 
+						message={playError}
+						onButtonClick={SelectPit}
+		/>
+	}
+	async function SelectPit(index : number) {		
+		setPlayError("");
+		try {
+            const urlPath = "mancala/api/play/"+ index;
+            const response = await fetch(urlPath, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json'
+                },
+            });
+    
+            if (response.ok) {
+				if (response.status === 200) {
+					const newState = await response.json();
+					setGameState(newState);
+				}
+				else {
+					setPlayError("Invalid move! Try again");
+				}
+			}
+        } catch (error) {
+            setPlayError(error.toString());
+		}
+    }
+	//return <div> OOPS </div>;
 }
