@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StartGame } from "./mancala/StartGame";
 import { Play } from "./mancala/Play";
 import { GameState } from "./mancala/gameState";
@@ -6,10 +6,26 @@ import { GameState } from "./mancala/gameState";
 export function App() {
 
     const [ gameState, setGameState ] = useState<GameState | undefined>(undefined);
+		
+	useEffect(() => {
+		const json = localStorage.getItem("myGameState");
+		if (json){
+		if (json.length > 10) {
+			const savedState = JSON.parse(json);
+			setGameState(savedState);
+		}}
+	}, []);
+ 
+	useEffect(() => {
+		const json = JSON.stringify(gameState);
+		localStorage.setItem("myGameState", json);
+	}, [gameState]);
+	
     const [ errorMessage, setErrorMessage ] = useState("");
 	const [ playError, setPlayError ] = useState("");
 
     async function tryStartGame(playerOne: string, playerTwo: string) {
+
         if (!playerOne) {
             setErrorMessage("Player 1 name is required!");
             return;
@@ -37,8 +53,11 @@ export function App() {
                 setGameState(gameState);
             }
             setErrorMessage("Failed to start the game. Try again.");
+			localStorage.removeItem("myGameState");
+			
         } catch (error) {
             setErrorMessage(error.toString());
+			localStorage.removeItem("myGameState");
         }
     }
 
@@ -55,6 +74,7 @@ export function App() {
 						onButtonClick={SelectPit}
 		/>
 	}
+	
 	async function SelectPit(index : number) {		
 		setPlayError("");
 		try {
@@ -77,6 +97,7 @@ export function App() {
 			}
         } catch (error) {
             setPlayError(error.toString());
+			localStorage.removeItem("myGameState");
 		}
     }
 }

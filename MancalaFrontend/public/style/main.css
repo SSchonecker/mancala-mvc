@@ -3,6 +3,7 @@ body {
     padding: 5%;
     margin: 5%;
 	margin-top: 5%;
+	text-align: center;
 
     --sogyo-color: #007936;
     --accent-color: #eee;
@@ -15,10 +16,25 @@ body {
 /* Describes the styling of the one and only element with id="mainheader", note the # in front of mainheader */
 #mancalaboard {
     background-color: var(--orange-color);
-    width: 100%;
-    height: 400px;
-    z-index: 7; /* Changes the overlap layer to top-most */
+	width: 100%;
+	height: 100%;
     border-radius: 10%;
+	margin-top: 50px;
+	margin-left: 10px;
+	margin-right: 10px;
+	position: relative;
+}
+
+#playTitle {
+	color: var(--sogyo-color);
+	font-size: 2em;
+	padding-bottom: 20px;
+}
+
+.centered {
+	margin: 0;
+	position: relative;
+	top: 50%;
 }
 
 /* Describes the styling of all elements with class="pit", note the . in front of it */
@@ -26,7 +42,7 @@ body {
     border: 1px solid rgb(0, 121, 54);
     background-color: var(--dark-orange-color);
     text-align: center;
-    display: inline-block; /* the default for span */
+    display: inline-block;
     width: 40px;
     height: 40px;
     padding: 20px;
@@ -34,7 +50,6 @@ body {
     float: left;
     border-radius: 40%;
     color: black;
-    z-index: 8; /* Changes the overlap layer to top-most */
 }
 
 .pitbutton {
@@ -45,7 +60,6 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    z-index: 9; /* Changes the overlap layer to top-most */
 }
 
 .pitbutton:hover {
@@ -59,9 +73,28 @@ body {
   color: black;
 }
 
-/* Describes the styling of all <article> elements 
-article {
-    border: 1px solid var(--primary-color);
-    color: var(--light-text-color);
-    margin: 5px;
-}*/
+.resetbutton {
+	background-color: var(--purple-color);
+	color: var(--light-text-color);
+	font-weight: bold;
+	border-radius: 20%;
+	margin: 10px;
+	width: 15%;
+}
+
+@media screen and (max-width: 1000px) {
+	.pit {
+		border: 1px solid rgb(0, 121, 54);
+		background-color: var(--dark-orange-color);
+		text-align: center;
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		padding: 20px;
+		margin: 10px;
+		float: left;
+		border-radius: 40%;
+		color: black;
+	}
+
+}

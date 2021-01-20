@@ -31,19 +31,23 @@ export function Play({ gameState, message, onButtonClick }: PlayProps) {
     let pitsOnlyOne = pitsOne.slice(0,-1);
     let pitsOnlyTwo = pitsTwo.slice(0,-1);
 	
-	let playersTurnMessage = gameState.players[0].name + ", your turn!";
-	if (gameState.players[1].hasTurn) {playersTurnMessage = gameState.players[1].name + ", your turn!";}
-
-	console.log(gameState.gameStatus.winner);
+	let resetButtonMessage = "Restart game";
+	function resetGame() {
+		localStorage.removeItem("myGameState");
+		window.location.reload();
+	}
+	
+	let boardCenterMessage = gameState.players[0].name + ", your turn!";
+	if (gameState.players[1].hasTurn) {boardCenterMessage = gameState.players[1].name + ", your turn!";}
 	
 	if (gameState.gameStatus.endOfGame) {
-		console.log(gameState.gameStatus.endOfGame);
-		playersTurnMessage = "The game is over, "+gameState.gameStatus.winner+", you have won!!";
+		boardCenterMessage = "The game is over, "+gameState.gameStatus.winner+", you have won!!";
+		resetButtonMessage = "Rematch?";
     }
 	
     
-    return <div>
-        <p>{gameState.players[0].name} vs {gameState.players[1].name}</p>
+    return <div className="centered">
+        <div className="centered">{gameState.players[0].name} vs {gameState.players[1].name}</div>
         <table id="mancalaboard">
         <tbody>
         <tr>
@@ -57,7 +61,7 @@ export function Play({ gameState, message, onButtonClick }: PlayProps) {
                     </span>
                 </th>
             )}
-            <th></th>
+            <th>{gameState.players[1].name}'s side</th>
         </tr>
         <tr>
             <th key={kalahaTwo.index}>
@@ -65,7 +69,7 @@ export function Play({ gameState, message, onButtonClick }: PlayProps) {
                     {kalahaTwo.nrOfStones}
                 </span>
             </th>
-			<th colSpan={pitsOnlyTwo.length}> {playersTurnMessage} </th>
+			<th colSpan={pitsOnlyTwo.length}> {boardCenterMessage} </th>
             <th key={kalahaOne.index}>
                 <span className="pit">
                     {kalahaOne.nrOfStones}
@@ -73,7 +77,7 @@ export function Play({ gameState, message, onButtonClick }: PlayProps) {
             </th>
         </tr>
         <tr>
-            <th></th>
+            <th>{gameState.players[0].name}'s side</th>
                 {pitsOnlyOne.map(pit =>
                     <th key={pit.index}>
                     <span className="pit">
@@ -88,5 +92,6 @@ export function Play({ gameState, message, onButtonClick }: PlayProps) {
         </tbody>
         </table>
 		<ErrorMessage>{message}</ErrorMessage>
+		<button className="resetbutton" onClick={() => resetGame() }>{resetButtonMessage}</button>
     </div>
 }

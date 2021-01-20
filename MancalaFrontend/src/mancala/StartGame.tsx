@@ -30,7 +30,7 @@ export function StartGame({ message, onPlayersConfirmed }: StartGameProps) {
         if (e.key === "Enter") {onPlayersConfirmed(playerOne, playerTwo);}
     };
 
-    return <div>
+    return <div className="centered">
         <input value={playerOne}
                placeholder="Player 1 name"
                onChange={(e) => setPlayerOne(e.target.value)}
