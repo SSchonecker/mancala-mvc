@@ -13,6 +13,11 @@ interface Pit {
     nrOfStones: number;
 }
 
+interface GameStatus {
+	endOfGame: boolean;
+	winner: string;
+}
+
 const ErrorMessage = styled.p`
     height: 1em;
     color: red;
@@ -25,8 +30,17 @@ export function Play({ gameState, message, onButtonClick }: PlayProps) {
     let kalahaTwo = pitsTwo[pitsTwo.length - 1];
     let pitsOnlyOne = pitsOne.slice(0,-1);
     let pitsOnlyTwo = pitsTwo.slice(0,-1);
+	
 	let playersTurnMessage = gameState.players[0].name + ", your turn!";
-		if (gameState.players[1].hasTurn) {playersTurnMessage = gameState.players[1].name + ", your turn!";}
+	if (gameState.players[1].hasTurn) {playersTurnMessage = gameState.players[1].name + ", your turn!";}
+
+	console.log(gameState.gameStatus.winner);
+	
+	if (gameState.gameStatus.endOfGame) {
+		console.log(gameState.gameStatus.endOfGame);
+		playersTurnMessage = "The game is over, "+gameState.gameStatus.winner+", you have won!!";
+    }
+	
     
     return <div>
         <p>{gameState.players[0].name} vs {gameState.players[1].name}</p>

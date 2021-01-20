@@ -1,9 +1,7 @@
 
 export interface GameState {
     players: [ Player, Player ]; // a player array contains exactly two Players
-    gameStatus: {
-        endOfGame: boolean;
-    };
+    gameStatus: GameStatus;
 }
 
 interface Player {
@@ -16,4 +14,9 @@ interface Player {
 interface Pit {
     index: number;
     nrOfStones: number;
+}
+
+interface GameStatus {
+	winner: string;
+	endOfGame: boolean;
 }
