@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 import nl.sogyo.mancala.api.models.*;
 import nl.sogyo.mancala.domain.Mancala;
-import nl.sogyo.mancala.domain.MancalaImpl;
+import nl.sogyo.mancala.domain.PitBoard;
 
 @Path("players")
 public class MancalaInitialize {
@@ -28,7 +28,7 @@ public class MancalaInitialize {
 			PlayerInput players) {
 		
 		HttpSession session = request.getSession(true);
-		Mancala mancala = new MancalaImpl();
+		Mancala mancala = new PitBoard();
 		
 		String namePlayer1 = players.getNameplayer1();
 		String namePlayer2 = players.getNameplayer2();
