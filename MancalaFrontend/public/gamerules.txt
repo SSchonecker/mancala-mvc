@@ -1,0 +1,22 @@
+Mancala: a two-player board game
+The Mancala board is made up of two rows of six holes, or pits, each. Four pieces -- marbles or stones -- are placed in each of the 12 holes.
+Each player has a kalaha to the right side of the Mancala board.
+ 
+Play
+The game begins with one player selecting one pit on his or her side, picking up all of the
+pieces from this pit and, moving counter-clockwise, depositing one of the
+stones in each hole until the stones run out.
+1. If you run into your own kalaha, deposit one stone in it.
+If you run into your opponent's kalaha, skip it.
+2. If the last piece you drop is in your own kalaha, you get
+a free turn.
+3. If the last piece you drop is in an empty hole on your
+side, you capture that piece and any pieces in the hole directly opposite. The captured pieces are put in your own kalaha.
+ 
+Winning the game
+The game ends when all six pits on one side of the Mancala board are empty.
+The player who still has pieces on his side of the board when the game ends captures all of those pieces.
+The winner is the player with the most pieces in his or her kalaha. On the occasion that both players have an equal amount of stones in their kalaha's, the player who's side was emptied first wins.
+
+Tips:
+Planning ahead is essential to victory in board games like Mancala. Try to plan two or three moves into the future.

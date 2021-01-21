@@ -43,54 +43,43 @@ export function Play({ gameState, message, onButtonClick }: PlayProps) {
 	if (gameState.gameStatus.endOfGame) {
 		boardCenterMessage = "The game is over, "+gameState.gameStatus.winner+", you have won!!";
 		resetButtonMessage = "Rematch?";
+		console.log(gameState.gameStatus);
     }
 	
     
     return <div className="centered">
         <div className="centered">{gameState.players[0].name} vs {gameState.players[1].name}</div>
-        <table id="mancalaboard">
-        <tbody>
-        <tr>
-            <th></th>
-            {pitsOnlyTwo.reverse().map(pit =>
-                <th key={pit.index}>
-                    <span className="pit">
-                        {pit.nrOfStones}
-                        <br></br>
-                        <button className="pitbutton" onClick={() => onButtonClick(pit.index)}>{pit.index}</button>
-                    </span>
-                </th>
-            )}
-            <th>{gameState.players[1].name}'s side</th>
-        </tr>
-        <tr>
-            <th key={kalahaTwo.index}>
-                <span className="pit">
-                    {kalahaTwo.nrOfStones}
-                </span>
-            </th>
-			<th colSpan={pitsOnlyTwo.length}> {boardCenterMessage} </th>
-            <th key={kalahaOne.index}>
-                <span className="pit">
-                    {kalahaOne.nrOfStones}
-                </span>
-            </th>
-        </tr>
-        <tr>
-            <th>{gameState.players[0].name}'s side</th>
-                {pitsOnlyOne.map(pit =>
-                    <th key={pit.index}>
-                    <span className="pit">
-                        {pit.nrOfStones}
-                        <br></br>
-                        <button className="pitbutton" onClick={() => onButtonClick(pit.index)}>{pit.index}</button>
-                    </span>
-                    </th>
-                )}
-            <th></th>
-        </tr>
-        </tbody>
-        </table>
+        <div id="mancalaboard" className="centered">
+			<p id="toprow" className="row">
+				{pitsOnlyTwo.reverse().map(pit =>
+					<span className="pit" key={pit.index}>
+						{pit.nrOfStones}
+						<br></br>
+						<button className="pitbutton" onClick={() => onButtonClick(pit.index)}>{pit.index}</button>
+					</span>
+				)}
+				<span id="sideone" className="sidetext">{gameState.players[1].name}'s side</span>
+			</p>
+			<p id="middlerow" className="row">
+				<span id="kalahatwo" className="pit" key={kalahaTwo.index}>
+					{kalahaTwo.nrOfStones}
+				</span>
+				<span id="boardcenter"> {boardCenterMessage} </span>
+				<span id="kalahaone" className="pit" key={kalahaOne.index}>
+					{kalahaOne.nrOfStones}
+				</span>
+			</p>
+			<p id="bottomrow" className="row">
+				<span className="sidetext">{gameState.players[0].name}'s side</span>
+				{pitsOnlyOne.map(pit =>
+					<span className="pit" key={pit.index}>
+						{pit.nrOfStones}
+						<br></br>
+						<button className="pitbutton" onClick={() => onButtonClick(pit.index)}>{pit.index}</button>
+					</span>
+				)}
+			</p>
+		</div>
 		<ErrorMessage>{message}</ErrorMessage>
 		<button className="resetbutton" onClick={() => resetGame() }>{resetButtonMessage}</button>
     </div>

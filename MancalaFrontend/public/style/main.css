@@ -1,8 +1,7 @@
 body {
     font-family: 'Lato', sans-serif;
-    padding: 5%;
-    margin: 5%;
-	margin-top: 5%;
+    padding: 2%;
+    margin: 2%;
 	text-align: center;
 
     --sogyo-color: #007936;
@@ -13,22 +12,45 @@ body {
     --dark-orange-color: #cc6600;
 }
 
-/* Describes the styling of the one and only element with id="mainheader", note the # in front of mainheader */
-#mancalaboard {
-    background-color: var(--orange-color);
-	width: 100%;
-	height: 100%;
-    border-radius: 10%;
-	margin-top: 50px;
-	margin-left: 10px;
-	margin-right: 10px;
-	position: relative;
-}
-
 #playTitle {
 	color: var(--sogyo-color);
 	font-size: 2em;
-	padding-bottom: 20px;
+	margin-bottom: 2%;
+}
+
+#root {
+	width: 100%;
+}
+
+#gamerules {
+	width: 100%;
+	background-color: lightblue;
+	color: black;
+	margin: 5px;
+}
+
+#rulebutton {
+	background-color: var(--purple-color);
+	color: var(--light-text-color);
+	font-weight: bold;
+	border-radius: 20%;
+	margin: 10px;
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* Describes the styling of the one and only element with id="mancalaboard", note the # in front of it */
+#mancalaboard {
+    background-color: var(--orange-color);
+	width: 100%;
+	height: 350px;
+    border-radius: 10%;
+	margin-top: 5%;
+	padding: 0;
 }
 
 .centered {
@@ -37,19 +59,82 @@ body {
 	top: 50%;
 }
 
+.row {
+	height: 33.3%;
+	display: inline-block;
+	margin: 0;
+}
+
+#toprow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 90%;
+}
+
+#middlerow {
+	position: absolute;
+	width: 100%;
+	top: 33.3%;
+	left: 0;
+}
+
+#boardcenter {
+	text-align: center;
+	padding-top: 5%;
+	height: 100%;
+    display: inline-block;
+}
+
+#kalahaone {
+	position: absolute;
+	right: 0;
+}
+
+#kalahatwo {
+	position: absolute;
+	left: 0;
+}
+
+#bottomrow {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 90%;
+}
+
 /* Describes the styling of all elements with class="pit", note the . in front of it */
 .pit {
-    border: 1px solid rgb(0, 121, 54);
+    border: 1px solid var(--sogyo-color);
     background-color: var(--dark-orange-color);
     text-align: center;
     display: inline-block;
     width: 40px;
     height: 40px;
-    padding: 20px;
-    margin: 10px;
-    float: left;
+    padding: 15px;
+    margin: 2%;
     border-radius: 40%;
     color: black;
+}
+
+.sidetext {
+	text-align: center;
+	display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 15px;
+    margin: 2%;
+}
+
+.resetbutton {
+	background-color: var(--purple-color);
+	color: var(--light-text-color);
+	font-weight: bold;
+	border-radius: 20%;
+	margin: 10px;
+	width: 20%;
+	height: 30px;
+	cursor: pointer;
 }
 
 .pitbutton {
@@ -67,34 +152,58 @@ body {
 	cursor: pointer;
 }
 
-.pitbutton:disabled, button[disabled]{
-  cursor: not-allowed;
-  background-color: gray;
-  color: black;
-}
+@media screen and (max-width: 850px) {
+	#mancalaboard {
+		width: 100%;
+		height: 700px;
+	}
 
-.resetbutton {
-	background-color: var(--purple-color);
-	color: var(--light-text-color);
-	font-weight: bold;
-	border-radius: 20%;
-	margin: 10px;
-	width: 15%;
-}
+	#toprow {
+		bottom: 0;
+		top: 10%;
+		height: 90%;
+		width: 33.3%;
+	}
 
-@media screen and (max-width: 1000px) {
+	#middlerow {
+		height: 100%;
+		left: 33.3%;
+		top: 0;
+		width: 33.3%;
+	}
+
+	#boardcenter {
+		position: relative;
+		top: 50%;
+	}
+
+	#kalahaone {
+		bottom: 0;
+		right: 33.3%;
+	}
+
+	#kalahatwo {
+		top: 0;
+		left: 33.3%;
+	}
+
+	#bottomrow {
+		top: 0;
+		bottom: 10%;
+		height: 90%;
+		width: 33.3%;
+	}
+	
 	.pit {
-		border: 1px solid rgb(0, 121, 54);
-		background-color: var(--dark-orange-color);
-		text-align: center;
-		display: inline-block;
+		display: block;
+		margin: 5% auto;
+	}
+	
+	.sidetext {
 		width: 40px;
 		height: 40px;
-		padding: 20px;
-		margin: 10px;
-		float: left;
-		border-radius: 40%;
-		color: black;
+		padding: 15px;
+		margin: 2%;
 	}
 
 }

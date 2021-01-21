@@ -4,9 +4,21 @@
     <meta charset="utf-8" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="style/main.css">
+	<script>
+		function showRules() {
+		  var x = document.getElementById("gamerules");
+		  if (x.style.display === "none") {
+			x.style.display = "block";
+		  } else {
+			x.style.display = "none";
+		  }
+		}
+	</script>
   </head>
   <body>
 	<h1 id="playTitle" class="centered"> Let's play Mancala! </h1>
+	<button id="rulebutton" onclick="showRules()">The rules</button>
+	<embed id="gamerules" src="gamerules.txt" style="display: none">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!--
       This index.html acts as a template. The div below is where React will render our app.

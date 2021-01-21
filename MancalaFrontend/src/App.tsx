@@ -67,13 +67,10 @@ export function App() {
         />
     }
 	
-	////////////////////////////////////////
-	else {
-		return <Play 	gameState={gameState} 
-						message={playError}
-						onButtonClick={SelectPit}
-		/>
-	}
+	return <Play 	gameState={gameState} 
+					message={playError}
+					onButtonClick={SelectPit}
+	/>
 	
 	async function SelectPit(index : number) {		
 		setPlayError("");
