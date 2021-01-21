@@ -10,8 +10,7 @@ stones in each hole until the stones run out.
 If you run into your opponent's kalaha, skip it.
 2. If the last piece you drop is in your own kalaha, you get
 a free turn.
-3. If the last piece you drop is in an empty hole on your
-side, you capture that piece and any pieces in the hole directly opposite. The captured pieces are put in your own kalaha.
+3. If the last piece you drop is in an empty hole on your side and the hole directly opposite is also empty, you capture that piece and the pieces in the opposite hole. The captured pieces are put in your own kalaha.
  
 Winning the game
 The game ends when all six pits on one side of the Mancala board are empty.
