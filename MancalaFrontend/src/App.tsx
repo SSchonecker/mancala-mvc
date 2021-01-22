@@ -5,15 +5,19 @@ import { GameState } from "./mancala/gameState";
 
 export function App() {
 
+	/*
+	 * React hooks for the over-all state of the game.
+	 * At refreshing of the page, the local storage is checked for a gamestate.
+	 * If the gamestate is updated in the useState, it is also automatically added to localStorage
+	 */
     const [ gameState, setGameState ] = useState<GameState | undefined>(undefined);
 		
 	useEffect(() => {
 		const json = localStorage.getItem("myGameState");
-		if (json){
-		if (json.length > 10) {
+		if (json) {
 			const savedState = JSON.parse(json);
 			setGameState(savedState);
-		}}
+		}
 	}, []);
  
 	useEffect(() => {
@@ -21,6 +25,9 @@ export function App() {
 		localStorage.setItem("myGameState", json);
 	}, [gameState]);
 	
+	/* 
+	 * Error messages to be shown on the page, one for StartGame, one for Play
+	 */
     const [ errorMessage, setErrorMessage ] = useState("");
 	const [ playError, setPlayError ] = useState("");
 
@@ -54,7 +61,6 @@ export function App() {
             }
             setErrorMessage("Failed to start the game. Try again.");
 			localStorage.removeItem("myGameState");
-			
         } catch (error) {
             setErrorMessage(error.toString());
 			localStorage.removeItem("myGameState");
@@ -67,13 +73,10 @@ export function App() {
         />
     }
 	
-	return <Play 	gameState={gameState} 
-					message={playError}
-					onButtonClick={SelectPit}
-	/>
-	
-	async function SelectPit(index : number) {		
+	async function MakeTurn(index : number) {
+		
 		setPlayError("");
+		
 		try {
             const urlPath = "mancala/api/play/"+ index;
             const response = await fetch(urlPath, {
@@ -88,7 +91,7 @@ export function App() {
 					const newState = await response.json();
 					setGameState(newState);
 				}
-				else {
+				else { //The API-server sends a 204 status on selecting empty pits or the wrong side
 					setPlayError("Invalid move! Try again");
 				}
 			}
@@ -97,4 +100,9 @@ export function App() {
 			localStorage.removeItem("myGameState");
 		}
     }
+	
+	return <Play gameState={gameState} 
+				 message={playError}
+				 onButtonClick={MakeTurn}
+	/>
 }

@@ -2,20 +2,10 @@ import React, { useState } from "react";
 import { GameState } from "./gameState";
 import styled from "styled-components";
 
-interface PlayProps {
+interface PlayProps { // The type of input for the Play function
     gameState: GameState;
 	message: string;
 	onButtonClick(index : number) : void;
-}
-
-interface Pit {
-    index: number;
-    nrOfStones: number;
-}
-
-interface GameStatus {
-	endOfGame: boolean;
-	winner: string;
 }
 
 const ErrorMessage = styled.p`
@@ -45,7 +35,6 @@ export function Play({ gameState, message, onButtonClick }: PlayProps) {
 		resetButtonMessage = "Rematch?";
 		console.log(gameState.gameStatus);
     }
-	
     
     return <div className="centered">
         <div className="centered">{gameState.players[0].name} vs {gameState.players[1].name}</div>

@@ -1,0 +1,1 @@
+mvn org.apache.maven.plugins:maven-install-plugin:3.0.0-M1:install-file -Dfile=mancala-1.0-SNAPSHOT.jar
