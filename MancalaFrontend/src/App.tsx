@@ -14,7 +14,7 @@ export function App() {
 		
 	useEffect(() => {
 		const json = localStorage.getItem("myGameState");
-		if (json) {
+		if (json && json.length > 10) { // The length check ensures that the gamestate from localStorage is not empty
 			const savedState = JSON.parse(json);
 			setGameState(savedState);
 		}
